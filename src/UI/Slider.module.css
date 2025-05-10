@@ -1,0 +1,42 @@
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  outline: none;
+  background: transparent;
+  height: 32px; /* Increase height to allow thumb to center over track */
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.slider::-webkit-slider-track {
+  -webkit-appearance: none;
+  appearance: none;
+  /* Use Tailwind variable if present, fallback to light brown */
+  background: var(--tw-bg-color, #f5e6ca);
+  height: 6px;
+}
+
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--tw-bg-opacity, 1) var(--tw-bg-color);
+  border: 2px solid var(--tw-border-opacity, 1) var(--tw-border-color);
+  cursor: pointer;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  margin-top: -2px;
+  position: relative;
+  z-index: 1;
+  background-color: currentColor;
+}
+
+.slider:hover::-webkit-slider-thumb {
+  opacity: 1;
+  background-color: currentColor;
+}
