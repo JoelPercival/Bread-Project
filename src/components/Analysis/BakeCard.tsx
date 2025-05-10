@@ -76,7 +76,7 @@ const BakeCard: React.FC<BakeCardProps> = ({ bake, recipe, onClick }) => {
             <h3 className="font-medium text-bread-brown-800 line-clamp-1">
               {recipe.name}
             </h3>
-            <p className="text-sm text-bread-brown-600">
+            <p className="text-sm text-bread-pakistan-green">
               {formatDate(bake.created)}
             </p>
           </div>
@@ -91,15 +91,15 @@ const BakeCard: React.FC<BakeCardProps> = ({ bake, recipe, onClick }) => {
         
         <div className="mt-4 grid grid-cols-2 gap-3">
           <div className="flex items-center">
-            <Clock size={14} className="text-bread-brown-400 mr-1" />
-            <span className="text-xs text-bread-brown-600">
+            <Clock size={14} className="text-bread-earth-yellow mr-1" />
+            <span className="text-xs text-bread-pakistan-green">
               {calculateDuration()}
             </span>
           </div>
           
           <div className="flex items-center">
-            <BookCopy size={14} className="text-bread-brown-400 mr-1" />
-            <span className="text-xs text-bread-brown-600">
+            <BookCopy size={14} className="text-bread-earth-yellow mr-1" />
+            <span className="text-xs text-bread-pakistan-green">
               {recipe.hydration}% Hydration
             </span>
           </div>

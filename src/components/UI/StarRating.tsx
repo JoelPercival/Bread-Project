@@ -33,7 +33,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   return (
     <div className="flex flex-col">
       {label && (
-        <span className="text-sm font-medium text-bread-brown-700 mb-1">{label}</span>
+        <span className="text-sm font-medium text-bread-dark-moss-green mb-1">{label}</span>
       )}
       <div className="flex items-center">
         {[...Array(max)].map((_, index) => {
@@ -47,18 +47,18 @@ const StarRating: React.FC<StarRatingProps> = ({
               whileHover={{ scale: 1.1 }}
               onClick={() => handleClick(starValue)}
               className={`focus:outline-none mr-${spacing}`}
-              style={{ color: isFilled ? '#F59E0B' : '#D1D5DB' }}
+              style={{ color: isFilled ? '#dda15e' : '#606c38' }}
               aria-label={`Rate ${starValue} of ${max}`}
             >
               <Star 
                 size={starSize} 
-                fill={isFilled ? '#F59E0B' : 'none'} 
+                fill={isFilled ? '#dda15e' : 'none'} 
               />
             </motion.button>
           );
         })}
         
-        <span className="ml-2 text-sm text-bread-brown-600">
+        <span className="ml-2 text-sm text-bread-pakistan-green">
           {value > 0 ? value : ''}
         </span>
       </div>

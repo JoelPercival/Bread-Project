@@ -5,22 +5,11 @@ export default {
     extend: {
       colors: {
         bread: {
-          crust: '#8B4513',
-          crumb: '#F5DEB3',
-          flour: '#F5F5DC',
-          wheat: '#D2B48C',
-          cream: '#FFFDD0',
-          brown: {
-            100: '#F5EFDC',
-            200: '#E6D5A7',
-            300: '#D4BA78',
-            400: '#C2A256',
-            500: '#A08446',
-            600: '#7D6534',
-            700: '#5A4722',
-            800: '#3C2E18',
-            900: '#1E180C',
-          },
+          'dark-moss-green': '#606c38',
+          'pakistan-green': '#283618',
+          'cornsilk': '#fefae0',
+          'earth-yellow': '#dda15e',
+          'tigers-eye': '#bc6c25',
         },
         success: {
           100: '#DCFCE7',

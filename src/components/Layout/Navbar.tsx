@@ -14,13 +14,13 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 sm:top-0 sm:bottom-auto sm:border-t-0 sm:border-b z-10">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-bread-earth-yellow sm:top-0 sm:bottom-auto sm:border-t-0 sm:border-b z-10">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between sm:h-16">
           <div className="hidden sm:flex items-center">
             <Link to="/" className="flex items-center">
-              <Croissant size={28} className="text-bread-crust mr-2" />
-              <span className="font-serif text-xl font-semibold text-bread-crust">BreadMaster</span>
+              <Croissant size={28} className="text-bread-pakistan-green mr-2" />
+              <span className="font-serif text-xl font-semibold text-bread-pakistan-green">BreadMaster</span>
             </Link>
           </div>
           
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
                   {isActive && (
                     <motion.div
                       layoutId="nav-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-1 sm:h-full sm:w-1 sm:left-0 sm:right-auto bg-bread-crust rounded-t-full sm:rounded-l-full sm:rounded-tr-none"
+                      className="absolute bottom-0 left-0 right-0 h-1 sm:h-full sm:w-1 sm:left-0 sm:right-auto bg-bread-earth-yellow rounded-t-full sm:rounded-l-full sm:rounded-tr-none"
                       initial={false}
                       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                     />

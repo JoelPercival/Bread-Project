@@ -23,11 +23,11 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
   
   return (
     <Card className="overflow-visible" interactive onClick={() => onView(recipe.id)}>
-      <div className="p-4 border-b border-bread-brown-100">
-        <h3 className="font-serif font-semibold text-lg text-bread-brown-800 line-clamp-1">
+      <div className="p-4 border-b border-bread-earth-yellow">
+        <h3 className="font-serif font-semibold text-lg text-bread-dark-moss-green line-clamp-1">
           {recipe.name}
         </h3>
-        <p className="text-sm text-bread-brown-600">
+        <p className="text-sm text-bread-pakistan-green">
           {recipe.breadType || 'Custom'} • {recipe.hydration}% Hydration
         </p>
       </div>

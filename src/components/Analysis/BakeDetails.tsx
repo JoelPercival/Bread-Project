@@ -68,7 +68,7 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
             <h2 className="font-serif text-2xl text-bread-brown-800">
               {recipe.name}
             </h2>
-            <p className="text-bread-brown-600">
+            <p className="text-bread-pakistan-green">
               {formatDate(bake.created)}
             </p>
           </div>
@@ -83,34 +83,34 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="bg-bread-brown-100 p-4 rounded-lg">
-            <h3 className="font-medium text-bread-brown-700 mb-2">Bake Details</h3>
+            <h3 className="font-medium text-bread-dark-moss-green mb-2">Bake Details</h3>
             <ul className="space-y-2 text-sm">
               <li className="flex justify-between">
-                <span className="text-bread-brown-600">Type:</span>
+                <span className="text-bread-pakistan-green">Type:</span>
                 <span className="font-medium text-bread-brown-800">
                   {recipe.breadType || 'Custom'}
                 </span>
               </li>
               <li className="flex justify-between">
-                <span className="text-bread-brown-600">Hydration:</span>
+                <span className="text-bread-pakistan-green">Hydration:</span>
                 <span className="font-medium text-bread-brown-800">
                   {recipe.hydration}%
                 </span>
               </li>
               <li className="flex justify-between">
-                <span className="text-bread-brown-600">Duration:</span>
+                <span className="text-bread-pakistan-green">Duration:</span>
                 <span className="font-medium text-bread-brown-800">
                   {calculateDuration()}
                 </span>
               </li>
               <li className="flex justify-between">
-                <span className="text-bread-brown-600">Started:</span>
+                <span className="text-bread-pakistan-green">Started:</span>
                 <span className="font-medium text-bread-brown-800">
                   {formatTime(bake.startTime)}
                 </span>
               </li>
               <li className="flex justify-between">
-                <span className="text-bread-brown-600">Completed:</span>
+                <span className="text-bread-pakistan-green">Completed:</span>
                 <span className="font-medium text-bread-brown-800">
                   {bake.endTime ? formatTime(bake.endTime) : 'In Progress'}
                 </span>
@@ -119,12 +119,12 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
           </div>
           
           <div className="bg-bread-brown-100 p-4 rounded-lg">
-            <h3 className="font-medium text-bread-brown-700 mb-2">Ratings</h3>
+            <h3 className="font-medium text-bread-dark-moss-green mb-2">Ratings</h3>
             
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-sm text-bread-brown-600">Crumb</span>
+                  <span className="text-sm text-bread-pakistan-green">Crumb</span>
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
@@ -140,14 +140,14 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
               
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-sm text-bread-brown-600">Crust</span>
+                  <span className="text-sm text-bread-pakistan-green">Crust</span>
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
                         size={16}
-                        fill={star <= bake.ratings.crust ? '#F59E0B' : 'none'}
-                        stroke={star <= bake.ratings.crust ? '#F59E0B' : '#D1D5DB'}
+                        fill={star <= bake.ratings.crust ? '#dda15e' : 'none'}
+                        stroke={star <= bake.ratings.crust ? '#dda15e' : '#606c38'}
                       />
                     ))}
                   </div>
@@ -156,7 +156,7 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
               
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-sm text-bread-brown-600">Flavor</span>
+                  <span className="text-sm text-bread-pakistan-green">Flavor</span>
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
@@ -173,13 +173,13 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
           </div>
           
           <div className="bg-bread-brown-100 p-4 rounded-lg">
-            <h3 className="font-medium text-bread-brown-700 mb-2">Flours Used</h3>
+            <h3 className="font-medium text-bread-dark-moss-green mb-2">Flours Used</h3>
             <ul className="space-y-1 text-sm">
               {recipe.flourTypes
                 .filter(flour => flour.percentage > 0)
                 .map(flour => (
                   <li key={flour.id} className="flex justify-between">
-                    <span className="text-bread-brown-600">{flour.name}:</span>
+                    <span className="text-bread-pakistan-green">{flour.name}:</span>
                     <span className="font-medium text-bread-brown-800">
                       {flour.percentage}%
                     </span>
@@ -191,7 +191,7 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
         
         <div className="space-y-6">
           <div>
-            <h3 className="font-medium text-bread-brown-700 mb-2">Stage Progress</h3>
+            <h3 className="font-medium text-bread-dark-moss-green mb-2">Stage Progress</h3>
             <div className="bg-white border border-bread-brown-200 rounded-lg overflow-hidden">
               <table className="min-w-full">
                 <thead>
@@ -207,10 +207,10 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
                       <td className="px-4 py-3 text-sm font-medium text-bread-brown-800">
                         {stage.stageName}
                       </td>
-                      <td className="px-4 py-3 text-sm text-bread-brown-600">
+                      <td className="px-4 py-3 text-sm text-bread-pakistan-green">
                         {stage.duration ? `${stage.duration.toFixed(0)} min` : 'N/A'}
                       </td>
-                      <td className="px-4 py-3 text-sm text-bread-brown-600">
+                      <td className="px-4 py-3 text-sm text-bread-pakistan-green">
                         {stage.notes || 'No notes'}
                       </td>
                     </tr>
@@ -222,7 +222,7 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-medium text-bread-brown-700 mb-2">What Went Well</h3>
+              <h3 className="font-medium text-bread-dark-moss-green mb-2">What Went Well</h3>
               <div className="bg-white border border-bread-brown-200 rounded-lg p-4 min-h-[120px]">
                 <p className="text-sm text-bread-brown-800 whitespace-pre-line">
                   {bake.notes.wentWell || 'No notes recorded'}
@@ -231,7 +231,7 @@ const BakeDetails: React.FC<BakeDetailsProps> = ({
             </div>
             
             <div>
-              <h3 className="font-medium text-bread-brown-700 mb-2">What To Try Next</h3>
+              <h3 className="font-medium text-bread-dark-moss-green mb-2">What To Try Next</h3>
               <div className="bg-white border border-bread-brown-200 rounded-lg p-4 min-h-[120px]">
                 <p className="text-sm text-bread-brown-800 whitespace-pre-line">
                   {bake.notes.tryNext || 'No notes recorded'}

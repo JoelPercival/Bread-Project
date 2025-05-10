@@ -27,10 +27,10 @@ const Button: React.FC<ButtonProps> = ({
   const baseClasses = 'flex items-center justify-center font-medium rounded-md focus:outline-none transition duration-150 ease-in-out';
   
   const variantClasses = {
-    primary: 'bg-bread-crust text-white hover:bg-bread-brown-700 focus:ring-2 focus:ring-offset-2 focus:ring-bread-brown-500',
-    secondary: 'bg-bread-crumb text-bread-brown-800 hover:bg-bread-brown-200 focus:ring-2 focus:ring-offset-2 focus:ring-bread-brown-300',
-    outline: 'border border-bread-brown-300 text-bread-brown-700 hover:bg-bread-brown-100 focus:ring-2 focus:ring-offset-2 focus:ring-bread-brown-300',
-    text: 'text-bread-brown-700 hover:text-bread-brown-900 hover:bg-bread-brown-100',
+    primary: 'bg-bread-dark-moss-green text-bread-cornsilk hover:bg-bread-earth-yellow focus:ring-2 focus:ring-offset-2 focus:ring-bread-earth-yellow',
+    secondary: 'bg-bread-tigers-eye text-bread-cornsilk hover:bg-bread-earth-yellow focus:ring-2 focus:ring-offset-2 focus:ring-bread-earth-yellow',
+    outline: 'bg-bread-cornsilk border border-bread-earth-yellow text-bread-dark-moss-green hover:bg-bread-earth-yellow focus:ring-2 focus:ring-offset-2 focus:ring-bread-earth-yellow',
+    text: 'text-bread-dark-moss-green hover:text-bread-tigers-eye hover:bg-bread-earth-yellow',
   };
   
   const sizeClasses = {

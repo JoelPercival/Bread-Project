@@ -40,7 +40,7 @@ const BakeFilters: React.FC<BakeFiltersProps> = ({
   });
   
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+    <div className="bg-bread-cornsilk rounded-lg shadow-md overflow-hidden mb-6">
       <div 
         className="flex items-center justify-between p-4 cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}

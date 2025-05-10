@@ -122,7 +122,7 @@ const StageCard: React.FC<StageCardProps> = ({
               value={notes}
               onChange={handleNotesChange}
               onBlur={handleNotesSave}
-              className="w-full p-2 text-sm border border-bread-brown-200 rounded-md min-h-[80px] focus:ring-bread-crust focus:border-bread-crust"
+              className="w-full p-2 text-sm border border-bread-earth-yellow rounded-md min-h-[80px] focus:ring-bread-dark-moss-green focus:border-bread-dark-moss-green"
               disabled={stage.completed}
             />
           </div>
