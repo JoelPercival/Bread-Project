@@ -70,13 +70,7 @@ const TimingsPage: React.FC = () => {
             <p className="text-bread-brown-600 mb-6 max-w-md mx-auto">
               You don't have any bakes in progress. Start a new bake to track your bread baking process.
             </p>
-            <Button
-              variant="primary"
-              onClick={() => navigate('/new-bake')}
-              icon={<PlusCircle size={18} />}
-            >
-              Start New Bake
-            </Button>
+            
           </div>
         ) : (
           <div>
