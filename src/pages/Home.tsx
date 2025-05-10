@@ -61,7 +61,7 @@ const Home: React.FC = () => {
           </Button>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -69,8 +69,8 @@ const Home: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
             >
-              <Card interactive onClick={() => navigate(feature.path)}>
-                <div className="p-6">
+              <Card interactive onClick={() => navigate(feature.path)} className="h-full flex flex-col">
+                <div className="p-6 flex flex-col flex-1 min-h-[340px]">
                   <div className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center mb-4`}>
                     <feature.icon size={24} />
                   </div>
@@ -93,34 +93,38 @@ const Home: React.FC = () => {
         </div>
         
         <div className="mt-16 bg-bread-brown-100 rounded-lg p-6 sm:p-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl text-bread-brown-800 font-semibold mb-4">
-              Perfect Your Craft
-            </h2>
-            
-            <p className="text-bread-brown-600 mb-6">
-              BreadMaster helps you track every aspect of your baking journey, from recipe formulation to bake analysis.
-              Build a collection of proven recipes and continue to refine your bread making skills.
-            </p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg p-4 shadow-sm">
-                <div className="font-serif text-3xl text-bread-crust font-bold mb-1">72%</div>
-                <div className="text-sm text-bread-brown-600">Hydration Sweet Spot</div>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm">
-                <div className="font-serif text-3xl text-bread-crust font-bold mb-1">4hrs</div>
-                <div className="text-sm text-bread-brown-600">Optimal Fermentation</div>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm">
-                <div className="font-serif text-3xl text-bread-crust font-bold mb-1">400°F</div>
-                <div className="text-sm text-bread-brown-600">Perfect Bake Temp</div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="font-serif text-2xl sm:text-3xl text-bread-brown-800 font-semibold mb-4">
+      How BreadMaster Works
+    </h2>
+    <p className="text-bread-brown-600 mb-8">
+      BreadMaster guides you through the essential steps of bread baking, from inspiration to analysis. Here’s how it works:
+    </p>
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+      <div className="flex flex-col items-center flex-1">
+        <ClipboardList size={40} className="mb-2 text-bread-crust" />
+        <span className="font-semibold text-bread-brown-800 mb-1">Create Recipe</span>
+        <span className="text-bread-brown-600 text-sm">Design your custom bread recipe with full control over ingredients and baker's percentages.</span>
+      </div>
+      <div className="hidden sm:flex flex-col items-center flex-shrink-0">
+        <ChevronRight size={32} className="text-bread-crust" />
+      </div>
+      <div className="flex flex-col items-center flex-1">
+        <Clock size={40} className="mb-2 text-bread-crumb" />
+        <span className="font-semibold text-bread-brown-800 mb-1">Track Timings</span>
+        <span className="text-bread-brown-600 text-sm">Monitor each stage of your bake in real time and never miss a step.</span>
+      </div>
+      <div className="hidden sm:flex flex-col items-center flex-shrink-0">
+        <ChevronRight size={32} className="text-bread-crust" />
+      </div>
+      <div className="flex flex-col items-center flex-1">
+        <BarChart size={40} className="mb-2 text-bread-wheat" />
+        <span className="font-semibold text-bread-brown-800 mb-1">Analyze Results</span>
+        <span className="text-bread-brown-600 text-sm">Review your bake data and learn how to improve your bread-making skills.</span>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
     </Layout>
   );
