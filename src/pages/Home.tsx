@@ -1,0 +1,129 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Layout from '../components/Layout/Layout';
+import Card from '../components/UI/Card';
+import Button from '../components/UI/Button';
+import { ChevronRight, ClipboardList, BarChart, Clock, PlusCircle, Croissant } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const Home: React.FC = () => {
+  const navigate = useNavigate();
+  
+  const features = [
+    {
+      title: 'Recipe Creator',
+      description: 'Design custom bread recipes with precise control over ingredients and process.',
+      icon: ClipboardList,
+      color: 'bg-bread-crust text-white',
+      path: '/recipes',
+    },
+    {
+      title: 'Timings Tracker',
+      description: 'Track each stage of your bread baking process in real-time.',
+      icon: Clock,
+      color: 'bg-bread-crumb text-bread-brown-800',
+      path: '/timings',
+    },
+    {
+      title: 'Bake Analysis',
+      description: 'Learn from past bakes to improve your bread making skills.',
+      icon: BarChart,
+      color: 'bg-bread-wheat text-bread-brown-800',
+      path: '/analysis',
+    },
+  ];
+  
+  return (
+    <Layout>
+      <div className="pt-6 pb-16">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Croissant size={64} className="mx-auto text-bread-crust mb-4" />
+          <h1 className="font-serif text-4xl sm:text-5xl text-bread-brown-800 font-bold mb-4">
+            BreadMaster
+          </h1>
+          <p className="text-xl text-bread-brown-600 max-w-2xl mx-auto">
+            Track, improve, and perfect your bread baking with precision and ease.
+          </p>
+          
+          <Button
+            variant="primary"
+            size="lg"
+            className="mt-8"
+            onClick={() => navigate('/recipes')}
+            icon={<PlusCircle size={20} />}
+          >
+            Start Baking
+          </Button>
+        </motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+            >
+              <Card interactive onClick={() => navigate(feature.path)}>
+                <div className="p-6">
+                  <div className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center mb-4`}>
+                    <feature.icon size={24} />
+                  </div>
+                  
+                  <h2 className="font-serif text-xl font-semibold text-bread-brown-800 mb-2">
+                    {feature.title}
+                  </h2>
+                  
+                  <p className="text-bread-brown-600 mb-4">
+                    {feature.description}
+                  </p>
+                  
+                  <div className="flex items-center text-bread-crust font-medium">
+                    Explore <ChevronRight size={16} className="ml-1" />
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+        
+        <div className="mt-16 bg-bread-brown-100 rounded-lg p-6 sm:p-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl text-bread-brown-800 font-semibold mb-4">
+              Perfect Your Craft
+            </h2>
+            
+            <p className="text-bread-brown-600 mb-6">
+              BreadMaster helps you track every aspect of your baking journey, from recipe formulation to bake analysis.
+              Build a collection of proven recipes and continue to refine your bread making skills.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="font-serif text-3xl text-bread-crust font-bold mb-1">72%</div>
+                <div className="text-sm text-bread-brown-600">Hydration Sweet Spot</div>
+              </div>
+              
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="font-serif text-3xl text-bread-crust font-bold mb-1">4hrs</div>
+                <div className="text-sm text-bread-brown-600">Optimal Fermentation</div>
+              </div>
+              
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="font-serif text-3xl text-bread-crust font-bold mb-1">400°F</div>
+                <div className="text-sm text-bread-brown-600">Perfect Bake Temp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default Home;
