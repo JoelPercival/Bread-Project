@@ -68,12 +68,15 @@ export interface StageProgress {
   id: string;
   stageId: string;
   stageName: string;
-  startTime: Date;
+  startTime?: Date;
   endTime?: Date;
   duration?: number;
+  elapsedSeconds?: number; // Track elapsed time for persistence
+  lastUpdated?: Date; // Track when the elapsed time was last updated
   notes: string;
   completed: boolean;
   included: boolean;
+  order?: number; // Add order field to match implementation
 }
 
 export interface Ingredient {

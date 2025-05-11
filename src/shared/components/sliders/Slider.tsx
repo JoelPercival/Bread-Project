@@ -58,12 +58,8 @@ const Slider: React.FC<SliderProps> = ({
         </div>
       )}
       
-      <div className="relative" style={{ padding: '10px 0' }}>
-        {/* Custom track - using a more visible approach */}
-        <div 
-          className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-2 bg-bread-brown-200 rounded-full"
-          style={{ zIndex: 0, pointerEvents: 'none' }}
-        >
+      <div className="relative">
+        <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-1 bg-bread-brown-200 rounded-full">
           <div
             className="h-full bg-bread-crust rounded-full"
             style={{ width: `${percentage}%` }}
@@ -81,14 +77,12 @@ const Slider: React.FC<SliderProps> = ({
           style={{
             WebkitAppearance: 'none',
             appearance: 'none',
-            background: 'transparent',
-            height: '20px',
+            background: 'var(--tw-bg-color, #f5e6ca)', // fallback for track
+            height: '6px',
             width: '100%',
             outline: 'none',
             margin: 0,
             padding: 0,
-            position: 'relative',
-            zIndex: 1,
             color: 'var(--tw-bg-color)',
           }}
         />

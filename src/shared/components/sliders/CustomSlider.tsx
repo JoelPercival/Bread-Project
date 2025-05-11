@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import styles from './Slider.module.css';
+import './CustomSlider.css';
 
-interface SliderProps {
+// Pakistan green color from the project's color palette
+const PAKISTAN_GREEN = '#283618';
+
+interface CustomSliderProps {
   min: number;
   max: number;
   step?: number;
@@ -14,7 +17,7 @@ interface SliderProps {
   className?: string;
 }
 
-const Slider: React.FC<SliderProps> = ({
+const CustomSlider: React.FC<CustomSliderProps> = ({
   min,
   max,
   step = 1,
@@ -58,15 +61,28 @@ const Slider: React.FC<SliderProps> = ({
         </div>
       )}
       
-      <div className="relative" style={{ padding: '10px 0' }}>
-        {/* Custom track - using a more visible approach */}
+      <div className="relative" style={{ height: '24px' }}>
+        {/* Custom track - explicitly styled */}
         <div 
-          className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-2 bg-bread-brown-200 rounded-full"
-          style={{ zIndex: 0, pointerEvents: 'none' }}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: 0,
+            right: 0,
+            transform: 'translateY(-50%)',
+            height: '4px',
+            backgroundColor: '#E5D6B5', // bread-brown-200
+            borderRadius: '9999px',
+            zIndex: 1
+          }}
         >
           <div
-            className="h-full bg-bread-crust rounded-full"
-            style={{ width: `${percentage}%` }}
+            style={{
+              height: '100%',
+              width: `${percentage}%`,
+              backgroundColor: '#8B5E34', // bread-crust
+              borderRadius: '9999px'
+            }}
           ></div>
         </div>
         
@@ -77,20 +93,23 @@ const Slider: React.FC<SliderProps> = ({
           step={step}
           value={localValue}
           onChange={handleChange}
-          className={`${styles.slider} w-full h-6 cursor-pointer`}
           style={{
             WebkitAppearance: 'none',
             appearance: 'none',
-            background: 'transparent',
-            height: '20px',
+            position: 'absolute',
+            top: 0,
+            left: 0,
             width: '100%',
-            outline: 'none',
+            height: '100%',
             margin: 0,
             padding: 0,
-            position: 'relative',
-            zIndex: 1,
-            color: 'var(--tw-bg-color)',
+            background: 'transparent',
+            cursor: 'pointer',
+            zIndex: 2
           }}
+          className="custom-slider-input"
+          // Add a data attribute to reference in CSS
+          data-thumb-color={PAKISTAN_GREEN}
         />
       </div>
       
@@ -102,4 +121,4 @@ const Slider: React.FC<SliderProps> = ({
   );
 };
 
-export default Slider;
+export default CustomSlider;

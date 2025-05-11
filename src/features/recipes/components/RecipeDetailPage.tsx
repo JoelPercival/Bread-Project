@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
-import RecipeForm from '../components/Recipe/RecipeForm';
-import Button from '../components/UI/Button';
-import useStore from '../store';
+import Layout from '../../../components/Layout/Layout';
+import RecipeForm from './RecipeForm';
+import Button from '../../../components/UI/Button';
+import { useRecipeStore } from '../store/recipeStore';
+import { Recipe } from '../../../types';
 import { ArrowLeft } from 'lucide-react';
+
+// RecipeState is already defined in the store
 
 const RecipeDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   
-  const recipes = useStore((state) => state.recipes);
-  const recipe = recipes.find(r => r.id === id);
+  const recipes = useRecipeStore(state => state.recipes);
+  // Add safety check to ensure recipes is an array before using find
+  const recipe = Array.isArray(recipes) ? recipes.find((r: Recipe) => r.id === id) : undefined;
   
   useEffect(() => {
     if (id && !recipe) {
@@ -25,7 +29,8 @@ const RecipeDetailPage: React.FC = () => {
   };
   
   const handleStartBake = (recipeId: string) => {
-    navigate(`/new-bake/${recipeId}`);
+    // Navigate to the stage selection page instead of directly to the bake page
+    navigate(`/select-stages/${recipeId}`);
   };
   
   if (!recipe) {

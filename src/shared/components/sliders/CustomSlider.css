@@ -1,0 +1,43 @@
+.custom-slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Style the thumb for Webkit browsers (Chrome, Safari, etc.) */
+.custom-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #283618; /* Pakistan green */
+  border: 2px solid #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+/* Style the thumb for Firefox */
+.custom-slider-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #283618; /* Pakistan green */
+  border: 2px solid #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+/* Hover state */
+.custom-slider-input::-webkit-slider-thumb:hover,
+.custom-slider-input::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Active state */
+.custom-slider-input:active::-webkit-slider-thumb,
+.custom-slider-input:active::-moz-range-thumb {
+  transform: scale(0.95);
+}

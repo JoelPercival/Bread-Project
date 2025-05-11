@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
-import RecipeForm from '../components/Recipe/RecipeForm';
-import useStore from '../store';
+import Layout from '../../../components/Layout/Layout';
+import RecipeForm from '../../recipes/components/RecipeForm';
+import { useRecipeStore } from '../../recipes/store/recipeStore';
 
 const NewBakePage: React.FC = () => {
   const { recipeId } = useParams<{ recipeId?: string }>();
   const navigate = useNavigate();
   
-  const recipes = useStore((state) => state.recipes);
+  const recipes = useRecipeStore(state => state.recipes);
   const recipe = recipeId ? recipes.find(r => r.id === recipeId) : undefined;
   
   const handleSave = (id: string) => {

@@ -1,32 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
-import Card from '../components/UI/Card';
-import Button from '../components/UI/Button';
-import useStore from '../store';
+import Layout from '../../../components/Layout/Layout';
+import Card from '../../../components/UI/Card';
+import Button from '../../../components/UI/Button';
+import { useBakingStore } from '../store/bakingStore';
+import { useRecipeStore } from '../../recipes/store/recipeStore';
 import { motion } from 'framer-motion';
 import { Clock, PlusCircle, ArrowRight } from 'lucide-react';
 
 const TimingsPage: React.FC = () => {
   const navigate = useNavigate();
-  const bakeSessions = useStore((state) => state.bakeSessions);
-  const recipes = useStore((state) => state.recipes);
-  const currentBakeSession = useStore((state) => state.currentBakeSession);
+  const bakeSessions = useBakingStore(state => state.bakeSessions);
+  const recipes = useRecipeStore(state => state.recipes);
   
+  // Add safety checks before array operations
   // Filter out only active bake sessions (no endTime)
-  const activeBakes = bakeSessions.filter(bake => !bake.endTime);
+  const activeBakes = Array.isArray(bakeSessions) 
+    ? bakeSessions.filter(bake => !bake.endTime)
+    : [];
   
   // Get recently completed bakes
-  const recentBakes = bakeSessions
-    .filter(bake => bake.endTime)
-    .sort((a, b) => new Date(b.endTime!).getTime() - new Date(a.endTime!).getTime())
-    .slice(0, 3);
+  const recentBakes = Array.isArray(bakeSessions)
+    ? bakeSessions
+      .filter(bake => bake.endTime)
+      .sort((a, b) => new Date(b.endTime!).getTime() - new Date(a.endTime!).getTime())
+      .slice(0, 3)
+    : [];
   
   const getRecipeForBake = (bakeId: string) => {
-    const bake = bakeSessions.find(b => b.id === bakeId);
+    // Add safety checks for array operations
+    const bake = Array.isArray(bakeSessions) ? bakeSessions.find(b => b.id === bakeId) : null;
     if (!bake) return null;
     
-    return recipes.find(r => r.id === bake.recipeId) || null;
+    return Array.isArray(recipes) ? recipes.find(r => r.id === bake.recipeId) || null : null;
   };
   
   // Continue a bake in progress
@@ -53,12 +59,8 @@ const TimingsPage: React.FC = () => {
     return Math.round((completedStages / totalStages) * 100);
   };
   
-  // Auto-redirect to current bake if there's only one active
-  useEffect(() => {
-    if (currentBakeSession) {
-      navigate(`/timings/${currentBakeSession.id}`);
-    }
-  }, [currentBakeSession, navigate]);
+  // We've removed the auto-redirect functionality to allow users to view the timings overview
+  // even when they have an active bake session
   
   return (
     <Layout title="Bake Timings">

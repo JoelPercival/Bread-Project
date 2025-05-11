@@ -1,7 +1,7 @@
 import React from 'react';
-import Layout from '../components/Layout/Layout';
-import StorageConfigPanel from '../components/Settings/StorageConfig';
-import Card from '../components/UI/Card';
+import Layout from '../../../components/Layout/Layout';
+import StorageConfigPanel from './StorageConfig';
+import Card from '../../../components/UI/Card';
 
 const SettingsPage: React.FC = () => {
   return (

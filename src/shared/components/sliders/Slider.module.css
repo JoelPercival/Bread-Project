@@ -4,20 +4,20 @@
   margin: 0;
   outline: none;
   background: transparent;
-  height: 20px;
+  height: 32px; /* Increase height to allow thumb to center over track */
   width: 100%;
   cursor: pointer;
   position: relative;
-  z-index: 5;
 }
 
 .slider::-webkit-slider-track {
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  background: #E5D6B5 !important; /* Explicit bread-brown-200 color */
-  height: 6px !important;
-  border-radius: 3px !important;
+  -webkit-appearance: none;
+  appearance: none;
+  /* Use Tailwind variable if present, fallback to light brown */
+  background: var(--tw-bg-color, #f5e6ca);
+  height: 6px;
 }
+
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -30,7 +30,7 @@
   cursor: pointer;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
-  margin-top: -7px;
+  margin-top: -2px;
   position: relative;
   z-index: 1;
   background-color: currentColor;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
-import Card from '../components/UI/Card';
-import Button from '../components/UI/Button';
+import Layout from '../../../components/Layout/Layout';
+import Card from '../../../components/UI/Card';
+import Button from '../../../components/UI/Button';
 import { ChevronRight, ClipboardList, BarChart, Clock, PlusCircle, Croissant } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -98,7 +98,7 @@ const Home: React.FC = () => {
       How BreadMaster Works
     </h2>
     <p className="text-bread-pakistan-green mb-8">
-      BreadMaster guides you through the essential steps of bread baking, from inspiration to analysis. Here’s how it works:
+      BreadMaster guides you through the essential steps of bread baking, from inspiration to analysis. Here's how it works:
     </p>
     <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
       <div className="flex flex-col items-center flex-1">

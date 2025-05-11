@@ -1,23 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
-import BakeCard from '../components/Analysis/BakeCard';
-import BakeFilters from '../components/Analysis/BakeFilters';
-import Button from '../components/UI/Button';
-import useStore from '../store';
+import Layout from '../../../components/Layout/Layout';
+import BakeCard from './BakeCard';
+import BakeFilters from './BakeFilters';
+import Button from '../../../components/UI/Button';
+import { useBakingStore } from '../../baking/store/bakingStore';
+import { useRecipeStore } from '../../recipes/store/recipeStore';
 import { BarChart as ChartBar, ChevronRightCircle, PlusCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const AnalysisPage: React.FC = () => {
   const navigate = useNavigate();
-  const bakeSessions = useStore((state) => state.bakeSessions);
-  const recipes = useStore((state) => state.recipes);
+  const bakeSessions = useBakingStore((state) => state.bakeSessions);
+  const recipes = useRecipeStore((state) => state.recipes);
   
-  // Only show completed bakes
-  const completedBakes = bakeSessions.filter(bake => bake.endTime);
+  // Only show completed bakes (with safety check for array) - using useMemo to prevent infinite renders
+  const completedBakes = useMemo(() => {
+    return Array.isArray(bakeSessions)
+      ? bakeSessions.filter(bake => bake.endTime)
+      : [];
+  }, [bakeSessions]);
+  
+  // Import FiltersState type from BakeFilters
+  interface FiltersState {
+    breadType: string | null;
+    minHydration: number;
+    maxHydration: number;
+    flourType: string | null;
+    minCrumbRating: number;
+    minCrustRating: number;
+    minFlavorRating: number;
+  }
   
   // Initialize filters
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<FiltersState>({
     breadType: null,
     minHydration: 0,
     maxHydration: 100,
@@ -27,71 +43,78 @@ const AnalysisPage: React.FC = () => {
     minFlavorRating: 0,
   });
   
-  const [filteredBakes, setFilteredBakes] = useState(completedBakes);
+  // Initialize filteredBakes state with an empty array instead of a derived value
+  const [filteredBakes, setFilteredBakes] = useState<typeof completedBakes>([]);
   
   // Apply filters
   useEffect(() => {
-    let filtered = completedBakes;
+    let filtered = [...completedBakes]; // Create a copy to avoid mutating the original
     
     if (filters.breadType) {
       filtered = filtered.filter(bake => {
-        const recipe = recipes.find(r => r.id === bake.recipeId);
+        const recipe = Array.isArray(recipes) ? recipes.find(r => r.id === bake.recipeId) : null;
         return recipe?.breadType === filters.breadType;
       });
     }
     
     if (filters.flourType) {
       filtered = filtered.filter(bake => {
-        const recipe = recipes.find(r => r.id === bake.recipeId);
-        return recipe?.flourTypes.some(
+        const recipe = Array.isArray(recipes) ? recipes.find(r => r.id === bake.recipeId) : null;
+        return recipe?.flourTypes && Array.isArray(recipe.flourTypes) ? recipe.flourTypes.some(
           flour => flour.name === filters.flourType && flour.percentage > 0
-        );
+        ) : false;
       });
     }
     
     if (filters.minHydration > 0) {
       filtered = filtered.filter(bake => {
-        const recipe = recipes.find(r => r.id === bake.recipeId);
-        return recipe && recipe.hydration >= filters.minHydration;
+        const recipe = Array.isArray(recipes) ? recipes.find(r => r.id === bake.recipeId) : null;
+        return recipe && typeof recipe.hydration === 'number' && recipe.hydration >= filters.minHydration;
       });
     }
     
     if (filters.minCrumbRating > 0) {
-      filtered = filtered.filter(bake => bake.ratings.crumb >= filters.minCrumbRating);
+      filtered = filtered.filter(bake => bake.ratings && typeof bake.ratings.crumb === 'number' && bake.ratings.crumb >= filters.minCrumbRating);
     }
     
     if (filters.minCrustRating > 0) {
-      filtered = filtered.filter(bake => bake.ratings.crust >= filters.minCrustRating);
+      filtered = filtered.filter(bake => bake.ratings && typeof bake.ratings.crust === 'number' && bake.ratings.crust >= filters.minCrustRating);
     }
     
     if (filters.minFlavorRating > 0) {
-      filtered = filtered.filter(bake => bake.ratings.flavor >= filters.minFlavorRating);
+      filtered = filtered.filter(bake => bake.ratings && typeof bake.ratings.flavor === 'number' && bake.ratings.flavor >= filters.minFlavorRating);
     }
     
     setFilteredBakes(filtered);
   }, [filters, completedBakes, recipes]);
   
-  // Get all unique bread types
-  const availableBreadTypes = Array.from(
-    new Set(
-      recipes
-        .filter(recipe => recipe.breadType)
-        .map(recipe => recipe.breadType)
-    )
-  ).filter(Boolean) as string[];
+  // Get all unique bread types (with safety check)
+  const availableBreadTypes = Array.isArray(recipes) 
+    ? Array.from(
+        new Set(
+          recipes
+            .filter(recipe => recipe && recipe.breadType)
+            .map(recipe => recipe.breadType)
+        )
+      ).filter(Boolean) as string[]
+    : [];
   
-  // Get all unique flour types
-  const availableFlourTypes = Array.from(
-    new Set(
-      recipes.flatMap(recipe => 
-        recipe.flourTypes
-          .filter(flour => flour.percentage > 0)
-          .map(flour => flour.name)
-      )
-    )
-  );
+  // Get all unique flour types (with safety check)
+  const availableFlourTypes = Array.isArray(recipes)
+    ? Array.from(
+        new Set(
+          recipes.flatMap(recipe => 
+            recipe && recipe.flourTypes && Array.isArray(recipe.flourTypes)
+              ? recipe.flourTypes
+                  .filter(flour => flour && typeof flour.percentage === 'number' && flour.percentage > 0)
+                  .map(flour => flour.name || '')
+              : []
+          )
+        )
+      ).filter(Boolean) as string[]
+    : [];
   
-  const handleUpdateFilters = (updatedFilters: Partial<typeof filters>) => {
+  const handleUpdateFilters = (updatedFilters: Partial<FiltersState>) => {
     setFilters(prevFilters => ({ ...prevFilters, ...updatedFilters }));
   };
   

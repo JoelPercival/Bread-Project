@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
-import BakeDetails from '../components/Analysis/BakeDetails';
-import useStore from '../store';
+import Layout from '../../../shared/components/Layout/Layout';
+import BakeDetails from './BakeDetails';
+import useStore from '../../../store';
 
 const BakeAnalysisPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
